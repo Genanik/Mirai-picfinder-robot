@@ -1,8 +1,11 @@
 package io.genanik.picfinder.SauceNAO
 
-import okhttp3.OkHttpClient
-import okhttp3.Request
-import okhttp3.Response
+import jdk.internal.net.http.HttpRequestImpl.USER_AGENT
+import java.io.BufferedReader
+import java.io.InputStreamReader
+import java.net.HttpURLConnection
+import java.net.URL
+
 
 class SauceNaoApi(ApiKey: String, debug: Boolean) {
     private val outputType = 2 // json
@@ -17,11 +20,14 @@ class SauceNaoApi(ApiKey: String, debug: Boolean) {
         }
     }
 
-    fun searchPic(searchMode: SearchMode, picUrl: String): String{
-        return(request(searchMode.value, picUrl))
+    fun searchPic(searchMode: SearchMode, picUrl: String): String {
+        return(request(searchMode.value, picUrl , 0))
     }
 
-    private fun request(db: Int, picUrl: String): String {
+    private fun request(db: Int, picUrl: String, times: Int): String {
+        if (times > 3){
+            throw Exception("请求次数过多")
+        }
         // 造url
         val fullURL = StringBuffer()
         fullURL.append("https://saucenao.com/search.php?")
@@ -33,19 +39,23 @@ class SauceNaoApi(ApiKey: String, debug: Boolean) {
         fullURL.append("url=$picUrl")
 
         // 去get
-        val client: OkHttpClient = OkHttpClient().newBuilder()
-            .build()
-        val request: Request = Request.Builder()
-            .url(fullURL.toString())
-            .method("GET", null)
-            .build()
-        val response: Response = client.newCall(request).execute()
+        val con: HttpURLConnection = URL(fullURL.toString()).openConnection() as HttpURLConnection
+        con.requestMethod = "GET"
+        con.setRequestProperty("User-Agent", USER_AGENT)
+        val `in` = BufferedReader(InputStreamReader(con.inputStream))
+        var inputLine: String?
+        val response = StringBuffer()
 
-        if (response.isSuccessful){
-            return response.body!!.string()
+        while (`in`.readLine().also { inputLine = it } != null) {
+            response.append(inputLine)
+        }
+        `in`.close()
+
+        if (con.responseCode == 200){
+            return response.toString()
         }
         // 请求没成功 重试
-        return request(db, picUrl)
+        return request(db, picUrl, times+1)
     }
 }
 

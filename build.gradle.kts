@@ -5,7 +5,7 @@ plugins {
 }
 
 group = "io.genanik"
-version = "0.1.0"
+version = "0.2.0"
 
 repositories {
     maven(url = "https://dl.bintray.com/kotlin/kotlin-eap")
@@ -17,10 +17,8 @@ repositories {
 
 val miraiCoreVersion = "1.0.1"
 val miraiConsoleVersion = "0.5.2"
-val ktor_version = "1.3.2"
 
 dependencies {
-    implementation("com.squareup.okhttp3", "okhttp", "4.7.2")
     implementation("org.json", "json", "20200518")
 
     compileOnly(kotlin("stdlib-jdk8"))

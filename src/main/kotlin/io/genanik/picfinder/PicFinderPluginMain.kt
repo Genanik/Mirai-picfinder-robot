@@ -32,7 +32,6 @@ object PicFinderPluginMain : PluginBase() {
         super.onEnable()
 
         val sauceNaoApi = SauceNaoApi(sauceCfg.getString("APIKey"), false)
-
         logger.info("SauceNao Loaded!")
 
         subscribeGroupMessages {
