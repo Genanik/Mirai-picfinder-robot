@@ -1,6 +1,5 @@
 package io.genanik.picfinder.SauceNAO
 
-import jdk.internal.net.http.HttpRequestImpl.USER_AGENT
 import java.io.BufferedReader
 import java.io.InputStreamReader
 import java.net.HttpURLConnection
@@ -41,7 +40,6 @@ class SauceNaoApi(ApiKey: String, debug: Boolean) {
         // 去get
         val con: HttpURLConnection = URL(fullURL.toString()).openConnection() as HttpURLConnection
         con.requestMethod = "GET"
-        con.setRequestProperty("User-Agent", USER_AGENT)
         val `in` = BufferedReader(InputStreamReader(con.inputStream))
         var inputLine: String?
         val response = StringBuffer()
