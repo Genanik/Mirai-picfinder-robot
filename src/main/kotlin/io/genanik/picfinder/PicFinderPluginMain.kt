@@ -12,6 +12,7 @@ import net.mamoe.mirai.message.data.*
 object PicFinderPluginMain : PluginBase() {
 
     lateinit var sauceCfg: Config
+    private lateinit var sauceNaoApi: SauceNaoApi
 
     override fun onLoad() {
         logger.info("读取SauceNAO配置文件中...")
@@ -19,8 +20,8 @@ object PicFinderPluginMain : PluginBase() {
         sauceCfg.setIfAbsent("APIKey", "")
         if (sauceCfg["APIKey"]!! == ""){
             logger.error("SauceNAO APIKey不存在")
-            logger.warning("请在\"plugins/PicFinder/SauceNAO.yml\"中将APIKey所对应的值改为您的APIKey后重启机器人获得最佳体验")
-            logger.warning("或使用管理员指令添加APIKey并重启机器人")
+            logger.warning("请在\"plugins/PicFinder/SauceNAO.yml\"中将APIKey所对应的值改为您的APIKey后获得最佳体验")
+            logger.warning("或使用管理员指令添加APIKey")
             logger.warning("APIKey获得方式详见 https://saucenao.com/user.php?page=search-api")
         }
         sauceCfg.save()
@@ -31,7 +32,7 @@ object PicFinderPluginMain : PluginBase() {
 
         super.onEnable()
 
-        val sauceNaoApi = SauceNaoApi(sauceCfg.getString("APIKey"), false)
+        sauceNaoApi = SauceNaoApi(sauceCfg.getString("APIKey"), false)
         logger.info("SauceNao Loaded!")
 
         subscribeGroupMessages {
@@ -66,7 +67,8 @@ object PicFinderPluginMain : PluginBase() {
                     "APIKey" -> {
                         sauceCfg["APIKey"] = it[1]
                         sauceCfg.save()
-                        logger.info("APIKey已更改为${sauceCfg["APIKey"]}")
+                        sauceNaoApi = SauceNaoApi(it[1], false)
+                        logger.info("APIKey已更改为${sauceCfg["APIKey"]}（无需重启机器人）")
                         return@onCommand true
                     }
                     else -> return@onCommand false
@@ -76,7 +78,7 @@ object PicFinderPluginMain : PluginBase() {
     }
 
     // 将MessageChain中的所有图片的url拿出来
-    suspend fun getAllPicture(rawMessage: MessageChain): ArrayList<String>{
+    private suspend fun getAllPicture(rawMessage: MessageChain): ArrayList<String>{
         val result = ArrayList<String>()
         var tmp = MessageChainBuilder()
         rawMessage.forEachContent {
