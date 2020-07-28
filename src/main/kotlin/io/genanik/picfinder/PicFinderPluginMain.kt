@@ -20,8 +20,8 @@ object PicFinderPluginMain : PluginBase() {
         if (sauceCfg["APIKey"]!! == ""){
             logger.error("SauceNAO APIKey不存在")
             logger.warning("请在\"plugins/PicFinder/SauceNAO.yml\"中将APIKey所对应的值改为您的APIKey后重启机器人获得最佳体验")
-            logger.warning("或使用管理员指令添加APIKey获得最佳体验")
-            logger.warning("APIKey获得详见 https://saucenao.com/user.php?page=search-api")
+            logger.warning("或使用管理员指令添加APIKey并重启机器人")
+            logger.warning("APIKey获得方式详见 https://saucenao.com/user.php?page=search-api")
         }
         sauceCfg.save()
         regCommands()
