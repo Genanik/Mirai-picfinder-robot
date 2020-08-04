@@ -43,5 +43,6 @@ fun AbelPlugins.regAdminHelp(){
 
 fun AbelPlugins.regAdminFunctions(){
     this.adminRegFunction("复读")
+    this.adminRegFunction("搜图")
     this.adminRegFunction("bilibili")
 }

@@ -34,5 +34,6 @@ fun AbelPlugins.regGetTime(timeController: Time){
 
 fun AbelPlugins.regFunctions(){
     this.regFunction("复读", "同一条消息出现两次后，Abel机器人自动跟读")
+    this.regFunction("搜图", "@机器人并带上一张图片，自动搜索图片来源")
     this.regFunction("bilibili", "发现b站视频链接自动生成预览信息")
 }

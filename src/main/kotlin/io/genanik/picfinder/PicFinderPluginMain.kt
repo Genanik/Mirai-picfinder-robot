@@ -13,10 +13,9 @@ import net.mamoe.mirai.event.subscribeGroupMessages
 
 object PicFinderPluginMain : PluginBase() {
 
-    lateinit var sauceCfg: Config
 
     // 为每个Abel插件创建对象
-    private val sauceNaoSearch = SauceNaoPlugin(sauceCfg)
+    private val sauceNaoSearch = SauceNaoPlugin()
     private val msgRepeaterController = MessageRepeater()
     private val timeController = Time()
     private val bilibiliPlugin = BilibiliMsg()
