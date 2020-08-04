@@ -7,9 +7,9 @@ import net.mamoe.mirai.console.command.registerCommand
 import net.mamoe.mirai.console.plugins.Config
 import net.mamoe.mirai.event.GroupMessageSubscribersBuilder
 
-class SauceNaoPlugin(sauceConfig: Config) {
+class SauceNaoPlugin() {
     private var sauceNaoAPI = SauceNaoApi("", false)
-    private var sauceCfg = sauceConfig
+    private lateinit var sauceCfg: Config
 
     fun onLoad(env: PicFinderPluginMain){
         env.logger.info("读取SauceNAO配置文件中...")
@@ -41,10 +41,10 @@ class SauceNaoPlugin(sauceConfig: Config) {
                 }
                 when (it[0]) {
                     "APIKey" -> {
-                        PicFinderPluginMain.sauceCfg["APIKey"] = it[1]
-                        PicFinderPluginMain.sauceCfg.save()
+                        sauceCfg["APIKey"] = it[1]
+                        sauceCfg.save()
                         sauceNaoAPI = SauceNaoApi(it[1], false)
-                        PicFinderPluginMain.logger.info("APIKey已更改为${PicFinderPluginMain.sauceCfg["APIKey"]}（无需重启机器人）")
+                        PicFinderPluginMain.logger.info("APIKey已更改为${sauceCfg["APIKey"]}（无需重启机器人）")
                         return@onCommand true
                     }
                     else -> return@onCommand false
