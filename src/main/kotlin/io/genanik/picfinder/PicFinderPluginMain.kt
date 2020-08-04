@@ -29,7 +29,6 @@ object PicFinderPluginMain : PluginBase() {
     }
 
     override fun onEnable() {
-
         super.onEnable()
 
         sauceNaoApi = SauceNaoApi(sauceCfg.getString("APIKey"), false)

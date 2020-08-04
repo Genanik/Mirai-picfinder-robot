@@ -7,7 +7,6 @@ import net.mamoe.mirai.message.uploadAsImage
 import org.json.JSONObject
 import java.net.URL
 
-
 class SauceMessage(SauceNaoJSON: String) {
     private val resultMessage = MessageChainBuilder()
     private val jsonData = JSONObject(SauceNaoJSON)
@@ -36,10 +35,6 @@ class SauceMessage(SauceNaoJSON: String) {
         }
         return resultMessage.asMessageChain()
     }
-
-
-
-
 
 }
 
