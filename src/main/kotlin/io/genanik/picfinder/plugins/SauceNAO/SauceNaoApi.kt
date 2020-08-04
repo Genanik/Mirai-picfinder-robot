@@ -1,10 +1,9 @@
-package io.genanik.picfinder.SauceNAO
+package io.genanik.picfinder.plugins.sauceNAO
 
 import java.io.BufferedReader
 import java.io.InputStreamReader
 import java.net.HttpURLConnection
 import java.net.URL
-
 
 class SauceNaoApi(ApiKey: String, debug: Boolean) {
     private val outputType = 2 // json

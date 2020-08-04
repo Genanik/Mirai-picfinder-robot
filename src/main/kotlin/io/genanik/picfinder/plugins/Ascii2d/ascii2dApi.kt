@@ -1,4 +1,4 @@
-package io.genanik.picfinder.Ascii2d
+package io.genanik.picfinder.plugins.ascii2d
 
 import net.mamoe.mirai.contact.Contact
 import net.mamoe.mirai.message.data.MessageChain
@@ -7,7 +7,6 @@ import net.mamoe.mirai.message.uploadAsImage
 import org.jsoup.Jsoup
 import org.jsoup.nodes.Document
 import java.net.URL
-
 
 class Ascii2d {
 

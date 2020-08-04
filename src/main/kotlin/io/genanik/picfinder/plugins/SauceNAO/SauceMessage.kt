@@ -1,4 +1,4 @@
-package io.genanik.picfinder.SauceNAO
+package io.genanik.picfinder.plugins.sauceNAO
 
 import net.mamoe.mirai.contact.Contact
 import net.mamoe.mirai.message.data.MessageChain
