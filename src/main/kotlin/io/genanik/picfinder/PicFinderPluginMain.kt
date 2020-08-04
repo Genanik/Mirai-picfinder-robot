@@ -63,9 +63,10 @@ object PicFinderPluginMain : PluginBase() {
             // bilibili
             bilibiliPlugin.trigger(abelPluginController, this)
 
-            // 注册Abel内容
-            regAbelDefault(this, abelPluginController)
         }
+
+        // 注册Abel内容
+        regAbelDefault(this, abelPluginController)
 
     }
 
