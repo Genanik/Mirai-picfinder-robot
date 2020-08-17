@@ -10,12 +10,13 @@ version = "1.0.0"
 repositories {
     maven(url = "https://dl.bintray.com/kotlin/kotlin-eap")
     maven(url = "https://maven.aliyun.com/nexus/content/repositories/jcenter")
+    maven(url = "https://dl.bintray.com/him188moe/mirai")
     maven(url = "https://mirrors.huaweicloud.com/repository/maven")
     mavenCentral()
     jcenter()
 }
 
-val miraiCoreVersion = "1.0.3"
+val miraiCoreVersion = "1.1.3"
 val miraiConsoleVersion = "0.5.2"
 
 dependencies {

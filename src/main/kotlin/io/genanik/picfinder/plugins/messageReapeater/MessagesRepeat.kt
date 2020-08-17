@@ -42,27 +42,7 @@ class MessagesRepeat(message: MessageChain) {
         return result
     }
 
-    // MessageChain倒序
-    suspend fun textBackRepeat(oldMsgChain: MessageChain, contact: Contact): MessageChain {
-        val newMsgChain = MessageChainBuilder() // 发送的MsgChain
-
-        oldMsgChain.removeMsgSource().reversed().forEach {
-            val msgClip = it.asMessageChain()
-
-            // 识别委托
-            val pic: Image? by msgClip.orNull()
-            val text: PlainText? by msgClip.orNull()
-
-            // 根据委托处理信息
-//            newMsgChain.processImg(pic, contact)  阉割版复读不处理图片，完整版在大火那里
-            newMsgChain.processText(text)
-
-            if (!hasBeenProcessed){
-                // 没有被处理委托
-                newMsgChain.add(it)
-            }
-            hasBeenProcessed = false
-        }
-        return newMsgChain.asMessageChain()
+    fun repeatMsg(oldMsgChain: MessageChain): MessageChain {
+        return oldMsgChain.removeMsgSource()
     }
 }
