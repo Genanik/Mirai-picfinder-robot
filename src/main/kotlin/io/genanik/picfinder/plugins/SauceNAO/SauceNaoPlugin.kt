@@ -7,7 +7,7 @@ import net.mamoe.mirai.console.command.registerCommand
 import net.mamoe.mirai.console.plugins.Config
 import net.mamoe.mirai.event.GroupMessageSubscribersBuilder
 
-class SauceNaoPlugin() {
+class SauceNaoPlugin {
     private var sauceNaoAPI = SauceNaoApi("", false)
     private lateinit var sauceCfg: Config
 
