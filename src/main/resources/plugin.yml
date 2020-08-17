@@ -1,6 +1,6 @@
 name: "PicFinder"
 author: "Genanik"
-version: "1.0.0"
+version: "1.1.0"
 main: "io.genanik.picfinder.PicFinderPluginMain"
 info: "综合性的Mirai搜图机器人 Web: https://github.com/Genanik/Mirai-picfinder-robot"
 depends: []
