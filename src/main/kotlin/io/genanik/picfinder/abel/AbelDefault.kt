@@ -1,6 +1,7 @@
 package io.genanik.picfinder.abel
 
 import io.genanik.picfinder.PicFinderPluginMain
+import net.mamoe.mirai.event.events.BotInvitedJoinGroupRequestEvent
 import net.mamoe.mirai.event.events.NewFriendRequestEvent
 import net.mamoe.mirai.event.subscribeAlways
 import net.mamoe.mirai.event.subscribeFriendMessages
@@ -117,7 +118,13 @@ fun regAbelDefault(controller: PicFinderPluginMain, aPM: AbelPlugins){
         }
     }
 
+    // 好友申请
     controller.subscribeAlways<NewFriendRequestEvent> {
+        accept()
+    }
+
+    // 邀请至群申请
+    controller.subscribeAlways<BotInvitedJoinGroupRequestEvent> {
         accept()
     }
 }
