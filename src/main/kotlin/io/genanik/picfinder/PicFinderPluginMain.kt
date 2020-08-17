@@ -6,8 +6,7 @@ import io.genanik.picfinder.abelCommand.*
 import io.genanik.picfinder.plugins.bilibiliMsg.BilibiliMsg
 import io.genanik.picfinder.plugins.time.Time
 import io.genanik.picfinder.plugins.messageReapeater.MessageRepeater
-import io.genanik.picfinder.plugins.sauceNAO.SauceNaoPlugin
-import net.mamoe.mirai.console.plugins.Config
+import io.genanik.picfinder.plugins.picFind.PicFind
 import net.mamoe.mirai.console.plugins.PluginBase
 import net.mamoe.mirai.event.subscribeGroupMessages
 
@@ -15,7 +14,7 @@ object PicFinderPluginMain : PluginBase() {
 
 
     // 为每个Abel插件创建对象
-    private val sauceNaoSearch = SauceNaoPlugin()
+    private val picFind = PicFind()
     private val msgRepeaterController = MessageRepeater()
     private val timeController = Time()
     private val bilibiliPlugin = BilibiliMsg()
@@ -25,7 +24,7 @@ object PicFinderPluginMain : PluginBase() {
     override fun onLoad() {
         super.onLoad()
 
-        sauceNaoSearch.onLoad(this)
+        picFind.onLoad(this)
 
         // 注册Abel管理员指令
         logger.info("注册Abel管理员指令")
@@ -54,7 +53,7 @@ object PicFinderPluginMain : PluginBase() {
          */
         subscribeGroupMessages {
             // 搜图
-            sauceNaoSearch.trigger(abelPluginController, this)
+            picFind.trigger(abelPluginController, this)
 
             // 复读
             msgRepeaterController.trigger(abelPluginController, this)

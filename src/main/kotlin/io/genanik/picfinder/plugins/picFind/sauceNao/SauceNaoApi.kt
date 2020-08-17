@@ -1,4 +1,4 @@
-package io.genanik.picfinder.plugins.sauceNAO
+package io.genanik.picfinder.plugins.picFind.sauceNao
 
 import java.io.BufferedReader
 import java.io.InputStreamReader

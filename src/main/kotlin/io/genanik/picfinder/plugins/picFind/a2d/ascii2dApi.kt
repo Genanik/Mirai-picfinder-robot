@@ -1,9 +1,11 @@
-package io.genanik.picfinder.plugins.ascii2d
+package io.genanik.picfinder.plugins.picFind.a2d
 
 import net.mamoe.mirai.contact.Contact
 import net.mamoe.mirai.message.data.MessageChain
 import net.mamoe.mirai.message.data.MessageChainBuilder
+import net.mamoe.mirai.message.data.SingleMessage
 import net.mamoe.mirai.message.uploadAsImage
+import org.graalvm.compiler.nodes.memory.MemoryCheckpoint
 import org.jsoup.Jsoup
 import org.jsoup.nodes.Document
 import java.net.URL
@@ -20,7 +22,9 @@ class Ascii2d {
             imgUrl = "https://ascii2d.net/" + elements.select(".image-box")[1].select("img")[0].attributes()["src"]
             original = sources[0].attributes()["href"]
         } catch (ignored: IndexOutOfBoundsException) {
-            return "获取失败" as MessageChain
+            val tmp = MessageChainBuilder()
+            tmp.add("获取失败")
+            return tmp.asMessageChain()
         }
         return A2dMessage(imgUrl, original).getMsg(contact)
     }
