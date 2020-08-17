@@ -42,7 +42,7 @@ class MessagesRepeat(message: MessageChain) {
         return result
     }
 
-    fun repeatMsg(oldMsgChain: MessageChain): MessageChain {
-        return oldMsgChain.removeMsgSource()
+    fun repeatMsg(): MessageChain {
+        return lastMessage
     }
 }

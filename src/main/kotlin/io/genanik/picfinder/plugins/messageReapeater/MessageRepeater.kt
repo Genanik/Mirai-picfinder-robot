@@ -14,7 +14,7 @@ class MessageRepeater{
             if (msgRepeatController.contains(this.group.id)) {
                 // 更新msgRepeat内容
                 if (msgRepeatController[this.group.id]!!.update(this.message)) {
-                    reply(msgRepeatController[this.group.id]!!.repeatMsg(this.message))
+                    reply(msgRepeatController[this.group.id]!!.repeatMsg())
                 }
             } else {
                 // 为本群创建一个msgRepeat
