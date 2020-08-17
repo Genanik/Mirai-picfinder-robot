@@ -94,10 +94,7 @@ class PicFind {
 
     private fun isUseA2d(msg: MessageChain): Boolean = try {
         val text = msg.getOrFail(PlainText).content
-        if (text.indexOf("a2d") != -1){
-            true
-        }
-        false
+        text.indexOf("a2d") != -1
     }catch (_: NoSuchElementException){
         false
     }

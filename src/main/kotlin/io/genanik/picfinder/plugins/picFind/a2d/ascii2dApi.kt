@@ -3,9 +3,7 @@ package io.genanik.picfinder.plugins.picFind.a2d
 import net.mamoe.mirai.contact.Contact
 import net.mamoe.mirai.message.data.MessageChain
 import net.mamoe.mirai.message.data.MessageChainBuilder
-import net.mamoe.mirai.message.data.SingleMessage
 import net.mamoe.mirai.message.uploadAsImage
-import org.graalvm.compiler.nodes.memory.MemoryCheckpoint
 import org.jsoup.Jsoup
 import org.jsoup.nodes.Document
 import java.net.URL
@@ -48,7 +46,7 @@ class A2dMessage(imgUrl: String, origUrl: String) {
     private val original = origUrl
 
     suspend fun getMsg(contact: Contact): MessageChain {
-        resultMessage.add("ascii2d:\n")
+        resultMessage.add("Ascii2d:\n")
         val img = URL(previewPic).uploadAsImage(contact)
         resultMessage.add(img)
         resultMessage.add("\n链接: $original")
