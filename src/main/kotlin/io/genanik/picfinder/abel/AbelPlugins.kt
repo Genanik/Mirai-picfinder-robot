@@ -19,7 +19,7 @@ class AbelPlugins(newLogger: MiraiLogger) {
     private var argsMap = mutableMapOf<String, (Long) -> MessageChain >()
     private var commandHelpInf = mutableMapOf<String, String>()
 
-    private var admin: MutableList<Long> = mutableListOf(2974918296) // 这里默认是作者的QQ号 TODO 增加修改管理员的功能
+    private var admin: MutableList<Long> = mutableListOf()
     private var adminArgsMap = mutableMapOf<String, (Long) -> MessageChain >()
     private var adminFunctionMap = mutableMapOf<String, MutableList<Long>>() //群号存在这里面就是关闭了
 
