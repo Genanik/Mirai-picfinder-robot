@@ -9,7 +9,8 @@ fun get(url: String): String {
     // 去get
     val con: HttpURLConnection = URL(url).openConnection() as HttpURLConnection
     con.requestMethod = "GET"
-    val `in` = BufferedReader(InputStreamReader(con.inputStream))
+    con.setRequestProperty("contentType", "UTF-8")
+    val `in` = BufferedReader(InputStreamReader(con.inputStream, "UTF-8"))
     var inputLine: String?
     val response = StringBuffer()
 
