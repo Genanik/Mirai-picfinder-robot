@@ -124,6 +124,10 @@ class AbelPlugins(newLogger: MiraiLogger) {
         return admin.contains(checkID)
     }
 
+    fun addAdmin(newAdminID: Long): Boolean {
+        return admin.add(newAdminID)
+    }
+
 
 
 
