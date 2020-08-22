@@ -103,28 +103,4 @@ fun regAbelDefault(controller: PicFinderPluginMain, aPM: AbelPlugins){
             }
         }
     }
-
-    // 临时消息
-    controller.subscribeTempMessages {
-        always {
-            reply("emm抱歉。。暂不支持临时会话，但是可以通过邀请至群使用（加好友自动通过验证），群内/help查看帮助")
-        }
-    }
-
-    // 好友消息
-    controller.subscribeFriendMessages {
-        always {
-            reply("emm抱歉。。暂不支持私聊，但是可以通过邀请至群使用（加好友自动通过验证），群内/help查看帮助")
-        }
-    }
-
-    // 好友申请
-    controller.subscribeAlways<NewFriendRequestEvent> {
-        accept()
-    }
-
-    // 邀请至群申请
-    controller.subscribeAlways<BotInvitedJoinGroupRequestEvent> {
-        accept()
-    }
 }

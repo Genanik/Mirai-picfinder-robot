@@ -3,6 +3,7 @@ package io.genanik.picfinder
 import io.genanik.picfinder.abel.AbelPlugins
 import io.genanik.picfinder.abel.regAbelDefault
 import io.genanik.picfinder.abelCommand.*
+import io.genanik.picfinder.plugins.autoAccept.AutoAccept
 import io.genanik.picfinder.plugins.bilibiliMsg.BilibiliMsg
 import io.genanik.picfinder.plugins.time.Time
 import io.genanik.picfinder.plugins.messageReapeater.MessageRepeater
@@ -15,6 +16,7 @@ object PicFinderPluginMain : PluginBase() {
 
     // 为每个Abel插件创建对象
     private val picFind = PicFind()
+    private val autoAccept = AutoAccept()
     private val msgRepeaterController = MessageRepeater()
     private val timeController = Time()
     private val bilibiliPlugin = BilibiliMsg()
@@ -25,6 +27,7 @@ object PicFinderPluginMain : PluginBase() {
         super.onLoad()
 
         picFind.onLoad(this)
+        autoAccept.onLoad(this)
 
         // 注册Abel管理员指令
         logger.info("注册Abel管理员指令")
