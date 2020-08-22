@@ -1,6 +1,8 @@
 package io.genanik.picfinder.abel
 
 import io.genanik.picfinder.PicFinderPluginMain
+import io.genanik.picfinder.plugins.picFind.sauceNao.SauceNaoApi
+import net.mamoe.mirai.console.command.registerCommand
 import net.mamoe.mirai.event.events.BotInvitedJoinGroupRequestEvent
 import net.mamoe.mirai.event.events.NewFriendRequestEvent
 import net.mamoe.mirai.event.subscribeAlways
@@ -103,4 +105,7 @@ fun regAbelDefault(controller: PicFinderPluginMain, aPM: AbelPlugins){
             }
         }
     }
+
+    // 注册mirai指令
+    // TODO 添加管理员
 }
