@@ -3,6 +3,7 @@ package io.genanik.picfinder
 import io.genanik.picfinder.abel.AbelPlugins
 import io.genanik.picfinder.abel.regAbelDefault
 import io.genanik.picfinder.abelCommand.*
+import io.genanik.picfinder.bot.CommandRegister
 import io.genanik.picfinder.plugins.autoAccept.AutoAccept
 import io.genanik.picfinder.plugins.bilibiliMsg.BilibiliMsg
 import io.genanik.picfinder.plugins.time.Time
@@ -15,6 +16,7 @@ import net.mamoe.mirai.event.subscribeGroupMessages
 object PicFinderPluginMain : PluginBase() {
 
     lateinit var bot: Config
+    lateinit var cmdRegister: CommandRegister
 
     // 为每个Abel插件创建对象
     private val picFind = PicFind()
@@ -28,11 +30,24 @@ object PicFinderPluginMain : PluginBase() {
     override fun onLoad() {
         super.onLoad()
 
+        cmdRegister = CommandRegister(
+            this,
+            "PicFinder",
+            listOf("picfinder", "Picfinder", "picFinder"),
+            "PicFinder 插件管理",
+            "PicFinder\n" +
+                    "\t[/PicFinder APIKey ...]\t用于设置SauceNaoAPIKey\n" +
+                    "\t[/PicFinder AddAdmin ...]\t用于添加管理员\n" +
+                    "也可以在配置文件中设置SauceNaoAPIKey")
+
         logger.info("读取Bot配置文件中...")
         bot = loadConfig("Bot.yml")
 
+        // Abel插件onLoad
         picFind.onLoad(this)
         autoAccept.onLoad(this)
+
+        cmdRegister.reg()
 
         // 注册Abel管理员指令
         logger.info("注册Abel管理员指令")

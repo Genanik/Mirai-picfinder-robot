@@ -19,9 +19,9 @@ class CommandRegister(
     private val target = targetClass
 
     private val childNames = mutableListOf<String>()
-    private val childFunction = mutableMapOf<String, (MiraiLogger) -> Boolean >()
+    private val childFunction = mutableMapOf<String, (List<String>) -> Boolean >()
 
-    fun addChild(childName: String, func:(MiraiLogger) -> Boolean){
+    fun addChild(childName: String, func:(List<String>) -> Boolean){
         childNames.add(childName)
         childFunction[childName] = func
     }
@@ -36,11 +36,16 @@ class CommandRegister(
             onCommand {
                 // 在注册的子指令里匹配
                 childNames.forEach { targetFunc ->
+                    if (it.isEmpty() || it[0] == "help"){
+                        return@onCommand false
+                    }
+
                     if (it[0] == targetFunc) {
-                        return@onCommand childFunction[it]!!.invoke(target.logger)
+                        return@onCommand childFunction[targetFunc]!!(it)
                     }
                 }
 
+                target.logger.error("输入了一个不存在的指令")
                 // 没有在注册的子指令里找到收到的指令
                 return@onCommand false
             }

@@ -108,4 +108,5 @@ fun regAbelDefault(controller: PicFinderPluginMain, aPM: AbelPlugins){
 
     // 注册mirai指令
     // TODO 添加管理员
+
 }

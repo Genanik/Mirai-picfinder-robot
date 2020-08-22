@@ -42,29 +42,20 @@ class PicFind {
     }
 
     private fun regCommands(env: PicFinderPluginMain) {
-        env.registerCommand {
-            name = "PicFinder"
-            alias = listOf("picfinder", "picFinder")
-            description = "PicFinder 插件管理"
-            usage = "PicFinder" +
-                    "\n[/PicFinder APIKey ...]    用于设置APIKey" +
-                    "\n也可以在配置文件中设置APIKey"
-            onCommand {
-                if (it.size < 2){
-                    return@onCommand false
-                }
-                when (it[0]) {
-                    "APIKey" -> {
-                        sauceCfg["APIKey"] = it[1]
-                        sauceCfg.save()
-                        sauceNaoAPI =
-                            SauceNaoApi(it[1], false)
-                        PicFinderPluginMain.logger.info("APIKey已更改为${sauceCfg["APIKey"]}（无需重启机器人）")
-                        return@onCommand true
+        env.cmdRegister.addChild("APIKey") { args ->
+            when(args.size){
+                1 -> env.logger.error("参数过少")
+                2 -> {
+                    sauceCfg["APIKey"] = args[1]
+                    sauceCfg.save()
+                    sauceNaoAPI =
+                        SauceNaoApi(args[1], false)
+                    env.logger.info("APIKey已更改为${sauceCfg["APIKey"]}（无需重启机器人）")
+                    return@addChild true
                     }
-                    else -> return@onCommand false
-                }
+                3 -> env.logger.error("参数过多")
             }
+            return@addChild true
         }
     }
 
