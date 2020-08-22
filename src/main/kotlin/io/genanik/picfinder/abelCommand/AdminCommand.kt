@@ -20,6 +20,7 @@ fun AbelPlugins.regAdminHelp(){
         val result = MessageChainBuilder()
         result.add("启用{功能}\n")
         result.add("禁用{功能}\n")
+        result.add("关闭所有{功能}\n")
         result.add("切换{功能}\n")
         result.add(this.adminGetAllCommands().toString() + "\n")
         result.add(this.adminGetAllFunctions().toString() + "\n")

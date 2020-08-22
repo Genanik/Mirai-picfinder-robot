@@ -87,6 +87,13 @@ fun regAbelDefault(controller: PicFinderPluginMain, aPM: AbelPlugins){
         // 管理员
         for (i in aPM.adminGetAllFunctions()) {
             // 操作
+            case("关闭所有$i") {
+                if (aPM.isAdmin(this.sender.id)) {
+
+                    aPM.disableFuncInAllGroup(i)
+                    reply("所有群已关闭功能: $i")
+                }
+            }
             case("禁用$i") {
                 if (aPM.isAdmin(this.sender.id)) {
 

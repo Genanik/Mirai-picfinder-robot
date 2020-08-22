@@ -203,7 +203,11 @@ class AbelPlugins(newLogger: MiraiLogger) {
      * 获取function当前是否被开启
      */
     fun getStatus(name: String, groupID: Long): Boolean {
-        return !functionMap[name]!!.contains(groupID)
+        return if (functionMap.contains(name)){
+            !functionMap[name]!!.contains(groupID)
+        }else{
+            false
+        }
     }
 
     /**
@@ -213,6 +217,13 @@ class AbelPlugins(newLogger: MiraiLogger) {
         val newFuncSwitchList = functionMap[name]!!
         newFuncSwitchList.add(groupID)
         functionMap[name] = newFuncSwitchList
+    }
+
+    /**
+     * 在所有群关闭function
+     */
+    fun disableFuncInAllGroup(name: String){
+        functionMap.remove(name)
     }
 
     /**
