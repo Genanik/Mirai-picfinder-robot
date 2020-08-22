@@ -55,7 +55,7 @@ class PicFind {
                     }
                 3 -> env.logger.error("参数过多")
             }
-            return@addChild true
+            return@addChild false
         }
     }
 

@@ -128,6 +128,10 @@ class AbelPlugins(newLogger: MiraiLogger) {
         return admin.add(newAdminID)
     }
 
+    fun getAllAdmin(): List<Long> {
+        return admin
+    }
+
 
 
 
