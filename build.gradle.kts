@@ -5,7 +5,7 @@ plugins {
 }
 
 group = "io.genanik"
-version = "1.1.0"
+version = "1.2.0-Beta1"
 
 repositories {
     maven(url = "https://dl.bintray.com/kotlin/kotlin-eap")
