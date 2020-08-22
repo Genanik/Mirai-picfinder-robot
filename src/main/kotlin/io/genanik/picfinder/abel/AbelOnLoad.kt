@@ -36,4 +36,11 @@ fun abelLoad(controller: PicFinderPluginMain, aPM: AbelPlugins){
         }
         return@addChild false
     }
+
+    // 读取配置文件中可能存在的管理员
+    if (controller.bot.exist("Admins")){
+        controller.bot.getLongList("Admins").forEach { admin ->
+            aPM.addAdmin(admin)
+        }
+    }
 }
