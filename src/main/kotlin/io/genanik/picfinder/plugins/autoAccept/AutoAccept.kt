@@ -2,52 +2,47 @@ package io.genanik.picfinder.plugins.autoAccept
 
 import io.genanik.picfinder.PicFinderPluginMain
 import io.genanik.picfinder.abel.AbelPlugins
-import net.mamoe.mirai.console.plugins.Config
 import net.mamoe.mirai.event.*
 import net.mamoe.mirai.event.events.BotInvitedJoinGroupRequestEvent
 import net.mamoe.mirai.event.events.NewFriendRequestEvent
 
 class AutoAccept {
-
-    private lateinit var bot: Config
-
+    
     fun onLoad(env: PicFinderPluginMain){
-        env.logger.info("读取Bot配置文件中...")
-        bot = env.loadConfig("Bot.yml")
-        bot.setIfAbsent("TempMsg", false)
-        bot.setIfAbsent("FriendMsg", false)
-        bot.setIfAbsent("NewFriendRequest", false)
-        bot.setIfAbsent("InvitedJoinGroup", false)
+        env.bot.setIfAbsent("TempMsg", false)
+        env.bot.setIfAbsent("FriendMsg", false)
+        env.bot.setIfAbsent("NewFriendRequest", false)
+        env.bot.setIfAbsent("InvitedJoinGroup", false)
 
-        if (bot["TempMsg"]!! == false){
+        if (env.bot["TempMsg"]!! == false){
             env.logger.info("已关闭自动回复临时消息")
         }else{
             tempMsg(env)
             env.logger.info("已开启自动回复临时消息")
         }
 
-        if (bot["FriendMsg"]!! == false){
+        if (env.bot["FriendMsg"]!! == false){
             env.logger.info("已关闭自动回复好友消息")
         }else{
             friendMsg(env)
             env.logger.info("已开启自动回复好友消息")
         }
 
-        if (bot["NewFriendRequest"]!! == false){
+        if (env.bot["NewFriendRequest"]!! == false){
             env.logger.info("已关闭自动同意好友申请")
         }else{
             newFriendRequest(env)
             env.logger.info("已开启自动同意好友申请")
         }
 
-        if (bot["InvitedJoinGroup"]!! == false){
+        if (env.bot["InvitedJoinGroup"]!! == false){
             env.logger.info("已关闭自动同意邀请至群")
         }else{
             invitedJoinGroup(env)
             env.logger.info("已开启自动同意邀请至群")
         }
 
-        bot.save()
+        env.bot.save()
     }
 
     fun trigger(abelPM: AbelPlugins, controller: GroupMessageSubscribersBuilder){

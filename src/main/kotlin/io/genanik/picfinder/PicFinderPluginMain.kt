@@ -8,11 +8,13 @@ import io.genanik.picfinder.plugins.bilibiliMsg.BilibiliMsg
 import io.genanik.picfinder.plugins.time.Time
 import io.genanik.picfinder.plugins.messageReapeater.MessageRepeater
 import io.genanik.picfinder.plugins.picFind.PicFind
+import net.mamoe.mirai.console.plugins.Config
 import net.mamoe.mirai.console.plugins.PluginBase
 import net.mamoe.mirai.event.subscribeGroupMessages
 
 object PicFinderPluginMain : PluginBase() {
 
+    lateinit var bot: Config
 
     // 为每个Abel插件创建对象
     private val picFind = PicFind()
@@ -25,6 +27,9 @@ object PicFinderPluginMain : PluginBase() {
 
     override fun onLoad() {
         super.onLoad()
+
+        logger.info("读取Bot配置文件中...")
+        bot = loadConfig("Bot.yml")
 
         picFind.onLoad(this)
         autoAccept.onLoad(this)
