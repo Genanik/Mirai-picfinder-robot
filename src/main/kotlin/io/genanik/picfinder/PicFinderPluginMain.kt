@@ -1,5 +1,6 @@
 package io.genanik.picfinder
 
+import io.genanik.picfinder.abel.abelLoad
 import io.genanik.picfinder.abel.AbelPlugins
 import io.genanik.picfinder.abel.regAbelDefault
 import io.genanik.picfinder.abelCommand.*
@@ -42,6 +43,7 @@ object PicFinderPluginMain : PluginBase() {
 
         logger.info("读取Bot配置文件中...")
         bot = loadConfig("Bot.yml")
+        abelLoad(this, abelPluginController)
 
         // Abel插件onLoad
         picFind.onLoad(this)
@@ -83,7 +85,6 @@ object PicFinderPluginMain : PluginBase() {
 
             // bilibili
             bilibiliPlugin.trigger(abelPluginController, this)
-
         }
 
         // 注册Abel内容
