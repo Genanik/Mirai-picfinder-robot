@@ -118,7 +118,9 @@ fun regAbelDefault(controller: PicFinderPluginMain, aPM: AbelPlugins){
                 if (controller.bot.exist("Admins")){
                     // 将配置文件中的管理员加入ramAdmins
                     controller.bot.getLongList("Admins").forEach {
-                        ramAdmins.add(it)
+                        if(!ramAdmins.contains(it)){
+                            ramAdmins.add(it)
+                        }
                     }
                 }
 
