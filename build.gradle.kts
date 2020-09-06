@@ -20,8 +20,6 @@ val miraiCoreVersion = "1.1.3"
 val miraiConsoleVersion = "0.5.2"
 
 dependencies {
-    implementation("org.json", "json", "20200518")
-
     compileOnly(kotlin("stdlib-jdk8"))
     compileOnly("net.mamoe:mirai-core:$miraiCoreVersion")
     compileOnly("net.mamoe:mirai-console:$miraiConsoleVersion")
