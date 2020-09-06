@@ -1,10 +1,13 @@
 package io.genanik.picfinder.plugins.picFind
 
+import com.google.gson.Gson
 import io.genanik.picfinder.PicFinderPluginMain
 import io.genanik.picfinder.abel.AbelPlugins
+import io.genanik.picfinder.plugins.bilibiliMsg.BilibiliMsg
 import io.genanik.picfinder.plugins.picFind.a2d.Ascii2d
 import io.genanik.picfinder.plugins.picFind.sauceNao.SauceMessage
 import io.genanik.picfinder.plugins.picFind.sauceNao.SauceNaoApi
+import io.genanik.picfinder.plugins.picFind.sauceNao.SauceNaoData
 import io.genanik.picfinder.plugins.picFind.sauceNao.SearchMode
 import io.genanik.picfinder.utils.getAllPicture
 import net.mamoe.mirai.console.command.registerCommand
@@ -76,7 +79,8 @@ class PicFind {
                         reply( a2dAPI.searchPic(picUrl, group) )
                     }else{
                         val code = sauceNaoAPI.searchPic(SearchMode.all, picUrl)
-                        reply(SauceMessage(code).getMsg(group))
+                        val sND = Gson().fromJson(code, SauceNaoData::class.javaObjectType)
+                        reply(SauceMessage(sND).getMsg(group))
                     }
                 }
             }
