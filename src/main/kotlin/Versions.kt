@@ -5,7 +5,7 @@ object Versions {
     }
 
     object PicFinder {
-        const val version = "1.2.0-Beta1"
+        const val version = "1.2.0"
     }
 
 }
